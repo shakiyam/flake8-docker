@@ -17,7 +17,7 @@ Installation
 
 ```console
 curl -L# https://raw.githubusercontent.com/shakiyam/flake8-docker/main/flake8 \
-  | sudo tee /usr/local/bin/flake8>/dev/null
+  | sudo tee /usr/local/bin/flake8 >/dev/null
 sudo chmod +x /usr/local/bin/flake8
 ```
 
