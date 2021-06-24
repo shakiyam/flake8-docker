@@ -5,7 +5,7 @@ import unittest
 
 class TestFlake8(unittest.TestCase):
 
-    def do_test(self, filename):
+    def do_test(self, filename: str):
         with open(filename, 'r') as f:
             lines = f.readlines()
         expectations = []
