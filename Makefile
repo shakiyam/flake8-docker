@@ -33,7 +33,7 @@ shfmt: ## Lint shell scripts
 
 test:  ## Test Flake8 plugins
 	@echo -e "\033[36m$@\033[0m"
-	@python ./test/test_flake8.py
+	@python3 ./test/test_flake8.py
 
 update_requirements: ## Update requirements.txt
 	@echo -e "\033[36m$@\033[0m"
