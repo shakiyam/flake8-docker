@@ -19,12 +19,12 @@ class TestFlake8(unittest.TestCase):
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE)
         stdout_lines = result.stdout.splitlines()
-        self.assertEqual(len(stdout_lines), len(expectations))
+        self.assertEqual(result.stderr, b'', 'STDERR is not empty.')
+        self.assertEqual(len(stdout_lines), len(expectations), 'Mismatch in number of outputs.')
         for i, (num, expectation) in enumerate(expectations):
             self.assertRegex(
                 stdout_lines[i],
                 f'{filename}:{num}:[0-9]+: {expectation}'.encode())
-        self.assertEqual(result.stderr, b'')
 
     def test_flake8_builtins(self):
         self.do_test('./test/example_flake8-builtins.py')
