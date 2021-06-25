@@ -20,7 +20,8 @@ class TestFlake8(unittest.TestCase):
             stderr=subprocess.PIPE)
         stdout_lines = result.stdout.splitlines()
         self.assertEqual(result.stderr, b'', 'STDERR is not empty.')
-        self.assertEqual(len(stdout_lines), len(expectations), 'Mismatch in number of outputs.')
+        self.assertEqual(len(stdout_lines), len(expectations),
+                         'Mismatch in number of outputs.')
         for i, (num, expectation) in enumerate(expectations):
             self.assertRegex(
                 stdout_lines[i],
