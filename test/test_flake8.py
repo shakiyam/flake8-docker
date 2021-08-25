@@ -15,7 +15,7 @@ class TestFlake8(unittest.TestCase):
                 for expectation in re.split(r'\W+', match.group()[1:].strip()):
                     expectations.append((i + 1, expectation))
         result = subprocess.run(
-            ['./flake8', filename],
+            ['flake8', filename],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE)
         stdout_lines = result.stdout.splitlines()
