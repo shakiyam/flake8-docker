@@ -13,7 +13,7 @@ all: shellcheck shfmt hadolint flake8 update_requirements build test ## Lint, up
 
 build: ## Build an image from a Dockerfile
 	@echo -e "\033[36m$@\033[0m"
-	@./build.sh
+	@./tools/build.sh
 
 flake8: ## Lint Python code
 	@echo -e "\033[36m$@\033[0m"
@@ -21,15 +21,15 @@ flake8: ## Lint Python code
 
 hadolint: ## Lint Dockerfile
 	@echo -e "\033[36m$@\033[0m"
-	@./hadolint.sh Dockerfile
+	@./tools/hadolint.sh Dockerfile
 
 shellcheck: ## Lint shell scripts
 	@echo -e "\033[36m$@\033[0m"
-	@./shellcheck.sh flake8 *.sh
+	@./tools/shellcheck.sh flake8 *.sh tools/*.sh
 
 shfmt: ## Lint shell scripts
 	@echo -e "\033[36m$@\033[0m"
-	@./shfmt.sh -l -d -i 2 -ci -bn -kp flake8 *.sh
+	@./tools/shfmt.sh -l -d -i 2 -ci -bn -kp flake8 *.sh tools/*.sh
 
 test:  ## Test Flake8 plugins
 	@echo -e "\033[36m$@\033[0m"
@@ -37,7 +37,7 @@ test:  ## Test Flake8 plugins
 
 update_requirements: ## Update requirements.txt
 	@echo -e "\033[36m$@\033[0m"
-	@./pip-compile.sh --upgrade
+	@./tools/pip-compile.sh --upgrade
 
 help: ## Print this help
 	@echo 'Usage: make [target]'
