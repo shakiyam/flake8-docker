@@ -13,7 +13,7 @@ all: shellcheck shfmt hadolint flake8 update_requirements build test ## Lint, up
 
 build: ## Build an image from a Dockerfile
 	@echo -e "\033[36m$@\033[0m"
-	@./tools/build.sh shakiyam/flake8
+	@./tools/build.sh docker.io/shakiyam/flake8
 
 flake8: ## Lint Python code
 	@echo -e "\033[36m$@\033[0m"
