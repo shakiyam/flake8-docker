@@ -1,6 +1,11 @@
 #!/bin/bash
 set -eu -o pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+readonly SCRIPT_DIR
+# shellcheck disable=SC1091
+. "$SCRIPT_DIR"/tools/colored_echo.sh
+
 if [[ $(command -v docker) ]]; then
   docker container run \
     --entrypoint python3 \
@@ -18,6 +23,6 @@ elif [[ $(command -v podman) ]]; then
     -v "$PWD":/work:ro \
     docker.io/shakiyam/flake8 ./test/test_flake8.py "$@"
 else
-  echo "Neither docker nor podman is installed."
+  echo_error "Neither docker nor podman is installed."
   exit 1
 fi
