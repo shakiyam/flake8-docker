@@ -8,12 +8,16 @@ ALL_TARGETS := $(shell egrep -o ^[0-9A-Za-z_-]+: $(MAKEFILE_LIST) | sed 's/://')
 
 .PHONY: $(ALL_TARGETS)
 
-all: shellcheck shfmt hadolint flake8 update_requirements build test ## Lint, update requirements.txt, build, and test
+all: check_for_image_updates shellcheck shfmt hadolint flake8 update_requirements build test ## Lint, update requirements.txt, build, and test
 	@:
 
 build: ## Build an image from a Dockerfile
 	@echo -e "\033[36m$@\033[0m"
 	@./tools/build.sh docker.io/shakiyam/flake8
+
+check_for_image_updates: ## Check for image updates
+	@echo -e "\033[36m$@\033[0m"
+	@./tools/check_for_image_updates.sh "$(shell awk -e '/FROM/{print $$2}' Dockerfile)" docker.io/python:alpine
 
 flake8: ## Lint Python code
 	@echo -e "\033[36m$@\033[0m"
