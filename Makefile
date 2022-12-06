@@ -8,8 +8,7 @@ ALL_TARGETS := $(shell egrep -o ^[0-9A-Za-z_-]+: $(MAKEFILE_LIST) | sed 's/://')
 
 .PHONY: $(ALL_TARGETS)
 
-all: check_for_image_updates shellcheck shfmt hadolint flake8 update_requirements build test ## Lint, update requirements.txt, build, and test
-	@:
+all: check_for_updates lint build test ## Check for updates, lint, build, and test
 
 build: ## Build an image from a Dockerfile
 	@echo -e "\033[36m$@\033[0m"
@@ -19,6 +18,12 @@ check_for_image_updates: ## Check for image updates
 	@echo -e "\033[36m$@\033[0m"
 	@./tools/check_for_image_updates.sh "$(shell awk -e '/FROM/{print $$2}' Dockerfile)" docker.io/python:alpine
 
+check_for_library_updates: ## Check for library updates
+	@echo -e "\033[36m$@\033[0m"
+	@./tools/pip-compile.sh --upgrade
+
+check_for_updates: check_for_image_updates check_for_library_updates ## Check for updates to all dependencies
+
 flake8: ## Lint Python code
 	@echo -e "\033[36m$@\033[0m"
 	@./flake8 --exclude="example*.py"
@@ -26,6 +31,14 @@ flake8: ## Lint Python code
 hadolint: ## Lint Dockerfile
 	@echo -e "\033[36m$@\033[0m"
 	@./tools/hadolint.sh Dockerfile
+
+help: ## Print this help
+	@echo 'Usage: make [target]'
+	@echo ''
+	@echo 'Targets:'
+	@awk 'BEGIN {FS = ":.*?## "} /^[0-9A-Za-z_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+
+lint: flake8 hadolint shellcheck shfmt ## Lint all dependencies
 
 shellcheck: ## Lint shell scripts
 	@echo -e "\033[36m$@\033[0m"
@@ -38,13 +51,3 @@ shfmt: ## Lint shell scripts
 test:  ## Test Flake8 plugins
 	@echo -e "\033[36m$@\033[0m"
 	@./test_flake8.sh
-
-update_requirements: ## Update requirements.txt
-	@echo -e "\033[36m$@\033[0m"
-	@./tools/pip-compile.sh --upgrade
-
-help: ## Print this help
-	@echo 'Usage: make [target]'
-	@echo ''
-	@echo 'Targets:'
-	@awk 'BEGIN {FS = ":.*?## "} /^[0-9A-Za-z_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
