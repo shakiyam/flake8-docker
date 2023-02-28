@@ -12,7 +12,7 @@ all: check_for_updates lint build test ## Check for updates, lint, build, and te
 
 build: ## Build an image from a Dockerfile
 	@echo -e "\033[36m$@\033[0m"
-	@./tools/build.sh docker.io/shakiyam/flake8
+	@./tools/build.sh ghcr.io/shakiyam/flake8
 
 check_for_library_updates: ## Check for library updates
 	@echo -e "\033[36m$@\033[0m"

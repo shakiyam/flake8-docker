@@ -13,7 +13,7 @@ if [[ $(command -v docker) ]]; then
     --rm \
     -u "$(id -u):$(id -g)" \
     -v "$PWD":/work:ro \
-    docker.io/shakiyam/flake8 ./test/test_flake8.py
+    ghcr.io/shakiyam/flake8 ./test/test_flake8.py
 elif [[ $(command -v podman) ]]; then
   podman container run \
     --entrypoint python3 \
@@ -21,7 +21,7 @@ elif [[ $(command -v podman) ]]; then
     --rm \
     --security-opt label=disable \
     -v "$PWD":/work:ro \
-    docker.io/shakiyam/flake8 ./test/test_flake8.py "$@"
+    ghcr.io/shakiyam/flake8 ./test/test_flake8.py "$@"
 else
   echo_error "Neither docker nor podman is installed."
   exit 1
