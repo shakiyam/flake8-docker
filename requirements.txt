@@ -14,7 +14,7 @@ flake8==6.0.0
     #   pep8-naming
 flake8-builtins==2.1.0
     # via -r requirements.in
-flake8-comprehensions==3.10.1
+flake8-comprehensions==3.11.0
     # via -r requirements.in
 flake8-import-order==0.18.2
     # via -r requirements.in
