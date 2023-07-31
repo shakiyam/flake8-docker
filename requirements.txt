@@ -4,7 +4,7 @@
 #
 #    pip-compile
 #
-flake8==6.0.0
+flake8==6.1.0
     # via
     #   -r requirements.in
     #   flake8-builtins
@@ -26,11 +26,11 @@ mccabe==0.7.0
     # via flake8
 pep8-naming==0.13.3
     # via -r requirements.in
-pycodestyle==2.10.0
+pycodestyle==2.11.0
     # via
     #   flake8
     #   flake8-import-order
-pyflakes==3.0.1
+pyflakes==3.1.0
     # via flake8
 
 # The following packages are considered to be unsafe in a requirements file:
