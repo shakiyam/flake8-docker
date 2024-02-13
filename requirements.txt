@@ -18,7 +18,7 @@ flake8-comprehensions==3.14.0
     # via -r requirements.in
 flake8-import-order==0.18.2
     # via -r requirements.in
-flake8-quotes==3.3.2
+flake8-quotes==3.4.0
     # via -r requirements.in
 flake8-use-fstring==1.4
     # via -r requirements.in
