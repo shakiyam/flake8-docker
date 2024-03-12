@@ -8,7 +8,7 @@ readonly SCRIPT_DIR
 
 if command -v docker &>/dev/null; then
   docker container run \
-    --entrypoint python3 \
+    --entrypoint python3.11 \
     --name test_flake8$$ \
     --rm \
     -u "$(id -u):$(id -g)" \
@@ -16,7 +16,7 @@ if command -v docker &>/dev/null; then
     ghcr.io/shakiyam/flake8 ./test/test_flake8.py
 elif command -v podman &>/dev/null; then
   podman container run \
-    --entrypoint python3 \
+    --entrypoint python3.11 \
     --name test_flake8$$ \
     --rm \
     --security-opt label=disable \
