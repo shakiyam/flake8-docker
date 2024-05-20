@@ -24,7 +24,7 @@ flake8-use-fstring==1.4
     # via -r requirements.in
 mccabe==0.7.0
     # via flake8
-pep8-naming==0.14.0
+pep8-naming==0.14.1
     # via -r requirements.in
 pycodestyle==2.11.1
     # via
