@@ -40,7 +40,7 @@ shellcheck: ## Lint shell scripts
 
 shfmt: ## Lint shell scripts
 	@echo -e "\033[36m$@\033[0m"
-	@./tools/shfmt.sh -l -d -i 2 -ci -bn -kp flake8 *.sh tools/*.sh
+	@./tools/shfmt.sh -l -d -i 2 -ci -bn flake8 *.sh tools/*.sh
 
 test:  ## Test Flake8 plugins
 	@echo -e "\033[36m$@\033[0m"
