@@ -14,7 +14,7 @@ build: ## Build an image from a Dockerfile
 
 check_for_library_updates: ## Check for library updates
 	@echo -e "\033[36m$@\033[0m"
-	@./tools/pip-compile.sh --upgrade --strip-extras
+	@./tools/uv.sh pip compile --upgrade --strip-extras --output-file requirements.txt requirements.in
 
 check_for_updates: check_for_library_updates ## Check for updates to all dependencies
 
