@@ -1,6 +1,11 @@
 flake8-docker
 =============
 
+> [!WARNING]
+> This project is archived and no longer maintained.
+> Consider using [Ruff](https://github.com/astral-sh/ruff) instead, which is significantly faster and replaces flake8 and many of its plugins.
+> Official Docker image is available at [ghcr.io/astral-sh/ruff](https://github.com/astral-sh/ruff/pkgs/container/ruff).
+
 [Flake8](https://pypi.org/project/flake8/) Docker Image
 
 The following plugins have been installed.
